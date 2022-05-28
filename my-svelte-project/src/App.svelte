@@ -1,14 +1,25 @@
 <script>
+	import Counter from "./Counter.svelte";
+
 	export let name;
+
+	function handleName() {
+		name == "Planet" ? (name = "world") : (name = "Planet");
+	}
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
+	<Counter initialCounter="1" />
+	<Counter />
+	<Counter initialCounter="4" />
 	<p>
 		Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
 		how to build Svelte apps.
 	</p>
 </main>
+
+<button on:click={handleName}>Change name</button>
 
 <style>
 	main {
@@ -19,7 +30,7 @@
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: rgb(0, 255, 191);
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
