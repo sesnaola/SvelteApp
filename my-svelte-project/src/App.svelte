@@ -1,25 +1,29 @@
 <script>
 	import Counter from "./Counter.svelte";
-
+	import Input from "./Input.svelte";
 	export let name;
 
 	function handleName() {
 		name == "Planet" ? (name = "world") : (name = "Planet");
 	}
+
+	const commonProps = { initialCounter: 2, maxCounter: 5 };
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<Counter initialCounter="1" />
-	<Counter />
-	<Counter initialCounter="4" />
-	<p>
+	<button on:click={handleName}>Change name</button>
+	<div class="horizontalButtonsLayout">
+		<Counter initialCounter="1" maxCounter="12" />
+		<Counter {...commonProps} />
+		<Counter initialCounter="4" maxCounter="5" /><br /><br />
+	</div>
+	<Input />
+	<!-- <p>
 		Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
 		how to build Svelte apps.
-	</p>
+	</p> -->
 </main>
-
-<button on:click={handleName}>Change name</button>
 
 <style>
 	main {
@@ -34,6 +38,12 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+	}
+
+	.horizontalButtonsLayout {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	@media (min-width: 640px) {
